@@ -1,0 +1,39 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# python 3.5.2
+
+
+def solution(num):
+    str_num = str(bin(num))[2:]
+    period_limit = len(str_num) // 2  # Floor division(//), to handle odd number of digit length.
+    period_list = []
+
+    for p in range(1, period_limit + 1):
+        if str_num[:p] == str_num[p:p * 2]:
+            period_list.append(p)
+
+    if period_list:
+        return max(period_list)
+    else:
+        return -1
+
+
+print(solution(955))
+
+# Answer -> 4
+"""
+Consider a non-empty string S=s[0]s[1]…s[Q-1] consisting of Q characters. The period of this is the smallest positive integer P such that:
+P<=Q/2 and 
+S[K]=S[K+P] for every K, where 0<=K<Q-P.
+For example, 8 is the period of “codilitycodilityco” and 7 is the period of “abracadabracadabra”.
+A positive integer M is the binary period of a positive integer N if M is the period of the binary representation of N.
+For example, 4 is the binary period of 955, because the binary representation of 955 is “1110111011” and its period is 4.
+You are given an implementation of a function:
+Class Solution{public int solution(int N);}
+This function, when given a positive integer N, returns the binary period of N. The function returns -1 if N does not have a binary period.
+For example, given N=955 the function returns 4, as explained in the example above.
+Unfortunately, despite the fact that the function may return expected result for the example input, there is a bug in the implementation, which may produce incorrect results for other inputs. Find the bug and correct it. You should modify at most two lines of code.
+Assume that:
+N is an integer within the rang[1.1,000,000,000]
+In your solution, focus on correctness. The performance of your solution will not be the focus of the assessment.
+"""			
